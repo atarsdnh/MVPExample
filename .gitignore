@@ -30,3 +30,9 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+# Android Studio and Gradle specific entries
+.gradle
+.idea
+*.iml
+build
