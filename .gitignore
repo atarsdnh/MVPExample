@@ -36,3 +36,9 @@ captures/
 .idea
 *.iml
 build
+
+# Android Studio and Gradle specific entries
+.gradle
+.idea
+*.iml
+build
