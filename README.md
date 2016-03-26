@@ -37,7 +37,7 @@ MVP架構用在Android上的好處是為了提升軟體品質，</br>
 (或許可以用方便實作MVP的lib，我沒使用過，不過覺得自己寫彈性比較大)</br>
 
 整體使用來說覺得優點遠大於缺點，如果對範例有問題歡迎來信</br>
-atarsdng@gmail.com</br>
+atarsdnh@gmail.com</br>
 
 範例講解實作影片:</br>
 https://www.youtube.com/watch?v=RTmhBLc6B-U</br>
