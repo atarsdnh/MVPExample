@@ -44,7 +44,7 @@ public class MainPresenterTest {
         presenter.onCreate();
 
         verify(view).setContentView();
-        verify(view).initRecyclerView();
+        verify(view).initNoteRecyclerView();
     }
 
     @Test

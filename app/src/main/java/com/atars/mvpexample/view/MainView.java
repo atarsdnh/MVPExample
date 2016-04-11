@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public interface MainView {
     void setContentView();
 
-    void initRecyclerView();
+    void initNoteRecyclerView();
 
     void clearNoteEditText();
 

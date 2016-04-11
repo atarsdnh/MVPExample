@@ -31,13 +31,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainView, NotesAdapter.DeleteButtonListener {
 
-    private MainPresenter presenter;
+    private MainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MainPresenter(this, new MainModel());
-        presenter.onCreate();
+        mPresenter = new MainPresenter(this, new MainModel());
+        mPresenter.onCreate();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainView, NotesAd
     }
 
     @Override
-    public void initRecyclerView() {
+    public void initNoteRecyclerView() {
         NotesAdapter adapter = new NotesAdapter(new ArrayList<String>(), this);
 
         RecyclerView recyclerView = getRecyclerView();
@@ -62,18 +62,17 @@ public class MainActivity extends AppCompatActivity implements MainView, NotesAd
 
     @Override
     public void updateRecyclerView(ArrayList<String> newNoteList) {
-        RecyclerView recyclerView = getRecyclerView();
-        NotesAdapter adapter = (NotesAdapter) (recyclerView.getAdapter());
+        NotesAdapter adapter = (NotesAdapter) (getRecyclerView().getAdapter());
         adapter.updateNotes(newNoteList);
     }
 
     public void onSaveButtonClick(View view) {
-        presenter.onSaveButtonClick(getNoteEditText().getText().toString());
+        mPresenter.onSaveButtonClick(getNoteEditText().getText().toString());
     }
 
     @Override
     public void onDeleteButtonClick(int position) {
-        presenter.onDeleteButtonClick(position);
+        mPresenter.onDeleteButtonClick(position);
     }
 
     private RecyclerView getRecyclerView() {

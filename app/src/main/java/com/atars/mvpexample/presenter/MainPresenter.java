@@ -20,30 +20,30 @@ import com.atars.mvpexample.model.MainModel;
 import com.atars.mvpexample.view.MainView;
 
 public class MainPresenter {
-    private final MainView view;
-    private final MainModel model;
+    private final MainView mView;
+    private final MainModel mModel;
 
     public MainPresenter(MainView view, MainModel model) {
-        this.view = view;
-        this.model = model;
+        mView = view;
+        mModel = model;
     }
 
     public void onCreate() {
-        view.setContentView();
-        view.initRecyclerView();
+        mView.setContentView();
+        mView.initNoteRecyclerView();
     }
 
     public void onSaveButtonClick(String note) {
         if (note.isEmpty()) {
             return;
         }
-        model.addNoteToList(note);
-        view.clearNoteEditText();
-        view.updateRecyclerView(model.getNoteList());
+        mModel.addNoteToList(note);
+        mView.clearNoteEditText();
+        mView.updateRecyclerView(mModel.getNoteList());
     }
 
     public void onDeleteButtonClick(int position) {
-        model.removeNoteFromList(position);
-        view.updateRecyclerView(model.getNoteList());
+        mModel.removeNoteFromList(position);
+        mView.updateRecyclerView(mModel.getNoteList());
     }
 }

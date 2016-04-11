@@ -27,12 +27,12 @@ import java.util.ArrayList;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    private final ArrayList<String> noteList;
-    private final DeleteButtonListener listener;
+    private final ArrayList<String> mNoteList;
+    private final DeleteButtonListener mListener;
 
     public NotesAdapter(ArrayList<String> noteList, DeleteButtonListener listener) {
-        this.noteList = noteList;
-        this.listener = listener;
+        mNoteList = noteList;
+        mListener = listener;
     }
 
     @Override
@@ -44,23 +44,23 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.noteTextView.setText(noteList.get(position));
+        holder.noteTextView.setText(mNoteList.get(position));
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onDeleteButtonClick(holder.getLayoutPosition());
+                mListener.onDeleteButtonClick(holder.getLayoutPosition());
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return noteList.size();
+        return mNoteList.size();
     }
 
     public void updateNotes(ArrayList<String> newNoteList) {
-        noteList.clear();
-        noteList.addAll(newNoteList);
+        mNoteList.clear();
+        mNoteList.addAll(newNoteList);
         notifyDataSetChanged();
     }
 
