@@ -18,6 +18,9 @@ package com.atars.mvpexample.view;
 
 import java.util.ArrayList;
 
+/**
+ *  A passive interface that defines responsibility of view.
+ */
 public interface MainView {
     void setContentView();
 

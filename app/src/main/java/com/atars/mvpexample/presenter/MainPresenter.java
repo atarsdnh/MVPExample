@@ -19,6 +19,9 @@ package com.atars.mvpexample.presenter;
 import com.atars.mvpexample.model.MainModel;
 import com.atars.mvpexample.view.MainView;
 
+/**
+ * According response logic of user events to operate data of model and action of view.
+ */
 public class MainPresenter {
     private final MainView mView;
     private final MainModel mModel;

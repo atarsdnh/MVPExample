@@ -18,6 +18,9 @@ package com.atars.mvpexample.model;
 
 import java.util.ArrayList;
 
+/**
+ * To operate data of MainActivity.
+ */
 public class MainModel {
     private ArrayList<String> mNoteList = new ArrayList<>();
 
