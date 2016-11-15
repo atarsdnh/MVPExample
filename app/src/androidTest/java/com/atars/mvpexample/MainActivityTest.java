@@ -16,6 +16,7 @@
 
 package com.atars.mvpexample;
 
+import android.content.Context;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
@@ -29,6 +30,7 @@ import android.view.View;
 
 import org.hamcrest.Matcher;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,37 +50,38 @@ public class MainActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
+    private int noteListSize;
+
+    @Before
+    public void setUp() throws Exception {
+        Context applicationContext = mActivityRule.getActivity().getApplicationContext();
+        noteListSize = DataManager.getInstance(applicationContext).getNoteList().size();
+    }
 
     @Test
-    public void testOnSaveButtonClick_withTextInput() throws Exception {
-        enterText("note");
+    public void testSaveThenDelete() throws Exception {
+        enterText("testNote");
         clickSaveButton();
 
         onView(withId(R.id.add_note_edit_text))
                 .check(matches(withText("")));
         onView(withId(R.id.notes_recycler_view))
-                .check(hasItemsCount(1));
+                .check(hasItemsCount(noteListSize + 1));
+
+        onView(withId(R.id.notes_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(
+                        0, MyViewAction.clickChildViewWithId(R.id.item_note_delete_button)));
+        onView(withId(R.id.notes_recycler_view))
+                .check(hasItemsCount(noteListSize));
     }
 
     @Test
-    public void testOnSaveButtonClick_emptyInput() throws Exception {
+    public void testSaveEmptyNote() throws Exception {
         enterText("");
         clickSaveButton();
 
         onView(withId(R.id.notes_recycler_view))
-                .check(hasItemsCount(0));
-    }
-
-    @Test
-    public void testOnDeleteButtonClick() throws Exception {
-        enterText("note");
-        clickSaveButton();
-        onView(withId(R.id.notes_recycler_view))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(
-                        0, MyViewAction.clickChildViewWithId(R.id.item_note_delete_button)));
-
-        onView(withId(R.id.notes_recycler_view))
-                .check(hasItemsCount(0));
+                .check(hasItemsCount(noteListSize));
     }
 
     private static ViewAssertion hasItemsCount(final int count) {

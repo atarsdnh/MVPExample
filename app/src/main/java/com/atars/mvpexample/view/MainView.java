@@ -16,10 +16,10 @@
 
 package com.atars.mvpexample.view;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- *  A passive interface that defines responsibility of view.
+ * A passive interface that defines responsibility of view.
  */
 public interface MainView {
     void setContentView();
@@ -28,5 +28,6 @@ public interface MainView {
 
     void clearNoteEditText();
 
-    void updateRecyclerView(ArrayList<String> note);
+    void updateRecyclerView(List<String> notes);
+
 }

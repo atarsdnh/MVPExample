@@ -28,6 +28,7 @@ import com.atars.mvpexample.presenter.MainPresenter;
 import com.atars.mvpexample.view.MainView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainView, NotesAdapter.DeleteButtonListener {
 
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainView, NotesAd
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = new MainPresenter(this, new MainModel());
+        DataManager dataManager = DataManager.getInstance(getApplicationContext());
+        mPresenter = new MainPresenter(this, new MainModel(dataManager));
         mPresenter.onCreate();
     }
 
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements MainView, NotesAd
         NotesAdapter adapter = new NotesAdapter(new ArrayList<String>(), this);
 
         RecyclerView recyclerView = getRecyclerView();
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements MainView, NotesAd
     }
 
     @Override
-    public void updateRecyclerView(ArrayList<String> newNoteList) {
+    public void updateRecyclerView(List<String> newNoteList) {
         NotesAdapter adapter = (NotesAdapter) (getRecyclerView().getAdapter());
         adapter.updateNotes(newNoteList);
     }

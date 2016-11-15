@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
@@ -58,7 +59,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         return mNoteList.size();
     }
 
-    public void updateNotes(ArrayList<String> newNoteList) {
+    public void updateNotes(List<String> newNoteList) {
         mNoteList.clear();
         mNoteList.addAll(newNoteList);
         notifyDataSetChanged();

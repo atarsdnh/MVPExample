@@ -34,6 +34,7 @@ public class MainPresenter {
     public void onCreate() {
         mView.setContentView();
         mView.initNoteRecyclerView();
+        mView.updateRecyclerView(mModel.getNoteList());
     }
 
     public void onSaveButtonClick(String note) {

@@ -16,23 +16,29 @@
 
 package com.atars.mvpexample.model;
 
-import java.util.ArrayList;
+import com.atars.mvpexample.DataManager;
+
+import java.util.List;
 
 /**
  * To operate data of MainActivity.
  */
 public class MainModel {
-    private ArrayList<String> mNoteList = new ArrayList<>();
+    private DataManager dataManager;
 
-    public void addNoteToList(String note) {
-        mNoteList.add(0, note);
+    public MainModel(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
-    public ArrayList<String> getNoteList() {
-        return mNoteList;
+    public void addNoteToList(String note) {
+        dataManager.addNoteToFirstIndexOfList(note);
+    }
+
+    public List<String> getNoteList() {
+        return dataManager.getNoteList();
     }
 
     public void removeNoteFromList(int position) {
-        mNoteList.remove(position);
+        dataManager.removeNoteFromList(position);
     }
 }

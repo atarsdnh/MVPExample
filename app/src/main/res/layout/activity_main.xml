@@ -52,7 +52,7 @@
             android:layout_toLeftOf="@id/save_button"
             android:layout_toStartOf="@id/save_button"
             android:hint="@string/add_note"
-            android:singleLine="true" />
+            android:maxLines="1" />
 
     </RelativeLayout>
 

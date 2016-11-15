@@ -45,6 +45,7 @@ public class MainPresenterTest {
 
         verify(view).setContentView();
         verify(view).initNoteRecyclerView();
+        verify(view).updateRecyclerView(model.getNoteList());
     }
 
     @Test
